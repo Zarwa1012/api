@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fbf8f4">
 <title>A Little Surprise For You 💗</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -20,11 +21,11 @@ body{
   font-family:'Caveat','Segoe Script',cursive;color:var(--ink);
   position:relative;min-height:100vh;min-height:100dvh;
   transition:background-color .7s;touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
   scrollbar-width:none;-ms-overflow-style:none;
 }
 body::-webkit-scrollbar{display:none;width:0;height:0}
 
-/* per-page moods */
 body[data-p=env],body[data-p=letter]{--bg:#f6ead8;--grid:#eddcc2;--ink:#8b1e3f;--soft:#a65a72;--card:#fbf3e3;--h:#e9a0b4}
 body[data-p=love]{--bg:#d8205a;--grid:#e0386c;--ink:#fff;--soft:#ffe3ec;--h:#ffc2d5;--btn:#fff;--btnt:#d8205a;--shape:#ff5c8a}
 body[data-p=hug],body[data-p=gift]{--bg:#fcd5e1;--grid:#f8c3d3;--ink:#a3224f;--soft:#b2587a;--h:#ee6f9a;--shape:#f493b0;--btn:#a8325e;--btnt:#fff}
@@ -35,12 +36,12 @@ body[data-p=hug],body[data-p=gift]{--bg:#fcd5e1;--grid:#f8c3d3;--ink:#a3224f;--s
 .b2{right:-22vmin;bottom:-22vmin;width:60vmin;height:60vmin;transform:translate(calc(var(--mx,0)*34px),calc(var(--my,0)*34px))}
 .b3{right:8vmin;top:-9vmin;width:20vmin;height:20vmin;opacity:.45;transform:translate(calc(var(--mx,0)*-50px),calc(var(--my,0)*-50px))}
 
-/* ---------- layout: the PAGE scrolls (no nested scroll boxes) ---------- */
+/* the PAGE scrolls (no nested scroll boxes) */
 #stage{
   position:relative;z-index:1;width:100%;min-width:0;
   min-height:100vh;min-height:100dvh;
   display:flex;align-items:center;justify-content:center;
-  padding:calc(env(safe-area-inset-top,0px) + 60px) 12px calc(env(safe-area-inset-bottom,0px) + 28px);
+  padding:calc(env(safe-area-inset-top,0px) + 64px) calc(env(safe-area-inset-right,0px) + 12px) calc(env(safe-area-inset-bottom,0px) + 32px) calc(env(safe-area-inset-left,0px) + 12px);
 }
 .page{
   display:none;flex-direction:column;align-items:center;justify-content:center;
@@ -53,11 +54,11 @@ body[data-p=hug],body[data-p=gift]{--bg:#fcd5e1;--grid:#f8c3d3;--ink:#a3224f;--s
 @keyframes in{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
 
 h1,h2{font-family:'Dancing Script','Brush Script MT',cursive;margin:0;color:var(--ink);line-height:1.1;overflow-wrap:anywhere;max-width:100%}
-h1{font-size:clamp(38px,10vw,84px)}
+h1{font-size:clamp(36px,10vw,84px)}
 h2{font-size:clamp(30px,8vw,56px)}
-p{margin:0;font-size:clamp(21px,5.5vw,32px);color:var(--soft);line-height:1.25;overflow-wrap:anywhere;max-width:100%}
+p{margin:0;font-size:clamp(22px,5.6vw,32px);color:var(--soft);line-height:1.25;overflow-wrap:anywhere;max-width:100%}
 
-.cat{width:clamp(120px,36vw,230px);height:auto;max-width:100%;animation:bob 2.6s ease-in-out infinite;filter:drop-shadow(0 6px 8px rgba(0,0,0,.18));cursor:pointer;-webkit-user-drag:none}
+.cat{width:clamp(110px,min(38vw,26vh),230px);height:auto;max-width:100%;animation:bob 2.6s ease-in-out infinite;filter:drop-shadow(0 6px 8px rgba(0,0,0,.18));cursor:pointer;-webkit-user-drag:none;user-select:none;-webkit-user-select:none}
 .cat.flip{transform:scaleX(-1)}
 .cat.mad{filter:grayscale(.7) contrast(1.1) drop-shadow(0 6px 8px rgba(0,0,0,.25));animation:shake .35s infinite}
 .catw{position:relative;display:inline-block}
@@ -69,19 +70,18 @@ p{margin:0;font-size:clamp(21px,5.5vw,32px);color:var(--soft);line-height:1.25;o
 button{
   font:700 clamp(22px,5.5vw,30px) 'Dancing Script',cursive;
   background:var(--btn);color:var(--btnt);border:0;border-radius:999px;
-  padding:8px 28px;min-height:46px;max-width:100%;
+  padding:8px 28px;min-height:48px;max-width:100%;
   cursor:pointer;text-decoration:underline;box-shadow:0 4px 0 rgba(0,0,0,.2);transition:transform .15s;
   -webkit-tap-highlight-color:transparent;
 }
-button:hover{transform:scale(1.06) rotate(-1deg)}
+@media (hover:hover){button:hover{transform:scale(1.06) rotate(-1deg)}.reset-btn:hover{transform:translateY(-2px)}}
 button:active{transform:translateY(3px)}
 button:focus-visible,#envsvg:focus-visible{outline:3px solid #7b2447;outline-offset:4px}
 .ghost{background:none;color:var(--ink);box-shadow:none;font-size:clamp(20px,5vw,24px)}
 .reset-btn{background:linear-gradient(135deg,#fff0f5,#f6b9cf);color:#8b1e3f;border:2px solid #fff;border-radius:18px;box-shadow:0 5px 0 #d98aa8;padding:10px 22px;font-size:clamp(20px,5vw,27px);text-decoration:none}
-.reset-btn:hover{transform:translateY(-2px)}
 
 /* envelope */
-#envsvg{width:clamp(220px,70vw,400px);max-width:100%;height:auto;overflow:visible;cursor:pointer;animation:bob 2.2s ease-in-out infinite;filter:drop-shadow(0 10px 14px rgba(120,30,60,.25))}
+#envsvg{width:clamp(220px,min(70vw,40vh + 80px),400px);max-width:100%;height:auto;overflow:visible;cursor:pointer;animation:bob 2.2s ease-in-out infinite;filter:drop-shadow(0 10px 14px rgba(120,30,60,.25))}
 #envsvg .flap{transition:transform .3s ease;transform-origin:0 52px}
 #envsvg .flapb{opacity:0;transition:opacity .2s .25s}
 #envsvg .paper{transition:transform .8s ease .5s}
@@ -94,8 +94,8 @@ button:focus-visible,#envsvg:focus-visible{outline:3px solid #7b2447;outline-off
 
 /* letter */
 .letter{background:var(--card);border-radius:14px;width:min(100%,850px);padding:clamp(16px,4vw,34px);box-shadow:0 10px 26px rgba(0,0,0,.2)}
-.letter h3{font:700 clamp(28px,6vw,46px) 'Dancing Script',cursive;margin:0 0 8px;color:var(--ink);overflow-wrap:anywhere}
-.letter p,#letterText{color:var(--ink);font-size:clamp(20px,4.6vw,30px);line-height:1.4;white-space:pre-line;overflow-wrap:anywhere}
+.letter h3{font:700 clamp(28px,6.5vw,46px) 'Dancing Script',cursive;margin:0 0 8px;color:var(--ink);overflow-wrap:anywhere}
+.letter p,#letterText{color:var(--ink);font-size:clamp(21px,4.8vw,30px);line-height:1.4;white-space:pre-line;overflow-wrap:anywhere}
 
 /* hanging polaroids (desktop / tablet: JS positions them) */
 .strip{position:relative;width:100%;max-width:1000px;height:clamp(360px,47vw,500px);flex:none}
@@ -115,14 +115,14 @@ button:focus-visible,#envsvg:focus-visible{outline:3px solid #7b2447;outline-off
 
 /* hug scene */
 .hw{position:relative;width:100%;display:flex;justify-content:center}
-#hugsvg{width:min(92vw,520px);max-width:100%;height:auto;cursor:pointer;overflow:visible}
+#hugsvg{width:min(94vw,520px);max-width:100%;height:auto;cursor:pointer;overflow:visible}
 #hugsvg .bd{fill:var(--bf);stroke:var(--bs);stroke-width:3}
 #hugsvg .w{--bf:#fffaf4;--bs:#8b5e4b}
 #hugsvg .b{--bf:#c48a63;--bs:#6b4130}
 .cl,.cr{transform:translateX(-95px)}
 .cr{transform:translateX(95px)}
 .go .cl{animation:walk 1.3s cubic-bezier(.3,1.35,.5,1) forwards}
-.go .cr{animation:walk 1.3s cubic-bezier(.3,1.35,.5,1) forwards;--s:1}
+.go .cr{animation:walk 1.3s cubic-bezier(.3,1.35,.5,1) forwards}
 @keyframes walk{to{transform:translateX(0)}}
 .afl,.afr{transform:rotate(0)}
 .go .afl{animation:ahl .7s 1.3s ease forwards}
@@ -143,38 +143,55 @@ button:focus-visible,#envsvg:focus-visible{outline:3px solid #7b2447;outline-off
 .go .hs:nth-of-type(4){left:62%;animation-delay:2.9s}
 @keyframes up{0%{opacity:0;transform:translateY(0) scale(.6)}20%{opacity:1}100%{opacity:0;transform:translateY(-120px) scale(1.2)}}
 
-/* sound buttons (always pinned top-right, never over the content) */
-.snd{position:fixed;z-index:20;top:calc(env(safe-area-inset-top,0px) + 10px);right:10px;display:flex;gap:8px}
-.snd button{font-size:clamp(16px,4vw,22px);padding:6px 14px;min-width:44px;min-height:44px;text-decoration:none;line-height:1;background:rgba(255,255,255,.88);color:#a8325e;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+/* sound buttons: pinned top-right, clear of the notch */
+.snd{position:fixed;z-index:20;top:calc(env(safe-area-inset-top,0px) + 10px);right:calc(env(safe-area-inset-right,0px) + 10px);display:flex;gap:8px}
+.snd button{font-size:clamp(16px,4vw,22px);padding:6px 14px;min-width:46px;min-height:46px;text-decoration:none;line-height:1;background:rgba(255,255,255,.9);color:#a8325e;box-shadow:0 2px 6px rgba(0,0,0,.2)}
 
 .fall{position:fixed;top:-40px;z-index:5;pointer-events:none;animation:fall linear forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
 
-/* ---------- PHONES: polaroids become a neat 2-column grid ---------- */
+/* ---------- PHONES ---------- */
 @media (max-width:650px){
-  #stage{padding-left:10px;padding-right:10px}
+  #stage{padding-top:calc(env(safe-area-inset-top,0px) + 66px)}
+  .page{gap:14px;padding:4px}
+  .row{width:100%;gap:10px}
+  .row button{flex:1 1 130px;max-width:230px;padding:8px 16px}
+  .page>button:not(.gift){min-width:min(72%,260px)}
+  .letter{padding:18px 16px}
+  .letter h3,.letter p,#letterText{text-align:left}
+  .letter h3{text-align:center}
   .strip{
     height:auto;max-width:440px;
     display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:26px 18px;padding:20px 8px 8px;
+    gap:26px 18px;padding:22px 6px 8px;
   }
   .strip svg{display:none}
   .pol{position:relative;left:auto!important;top:auto!important;width:auto!important;padding:6px 6px 22px}
   .pol i{top:-10px;width:10px;height:22px;margin-left:-5px}
   .pol div{aspect-ratio:1}
-  .row{gap:10px}
+  .hw .hs{font-size:24px}
 }
 @media (max-width:360px){
-  button{padding:8px 20px}
+  button{padding:8px 18px}
   .strip{gap:22px 12px}
 }
-
-/* landscape phones: less vertical padding */
-@media (max-height:480px) and (orientation:landscape){
-  #stage{padding-top:calc(env(safe-area-inset-top,0px) + 56px)}
-  .cat{width:clamp(90px,22vh,150px)}
+/* short phones: tighten so nothing needs a long scroll */
+@media (max-width:650px) and (max-height:700px){
+  #stage{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 20px)}
+  .cat{width:clamp(96px,min(34vw,22vh),170px)}
+  h1{font-size:clamp(32px,9vw,54px)}
+  h2{font-size:clamp(26px,7.4vw,42px)}
+  .gift{font-size:clamp(90px,28vw,150px)}
 }
-
+/* landscape phones */
+@media (max-height:480px) and (orientation:landscape){
+  #stage{padding-top:calc(env(safe-area-inset-top,0px) + 58px)}
+  .cat{width:clamp(80px,22vh,140px)}
+  #envsvg{width:clamp(160px,44vh,260px)}
+  #hugsvg{width:min(60vw,340px)}
+  h1{font-size:clamp(30px,8vh,48px)}
+  h2{font-size:clamp(26px,7vh,40px)}
+}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}}
 </style>
 </head>
@@ -266,7 +283,6 @@ button:focus-visible,#envsvg:focus-visible{outline:3px solid #7b2447;outline-off
         <ellipse cx="0" cy="6" rx="6" ry="4" fill="#2e1a12"/><path d="M-6 15q6 6 12 0" fill="none" stroke="#2e1a12" stroke-width="2.500" stroke-linecap="round"/>
         <g transform="translate(34 40)"><rect x="-10" y="0" width="20" height="54" rx="10" class="bd"/></g>
       </g></g></g>
-      <!-- front arms wrap around each other -->
       <g transform="translate(170 118)"><g class="cl w"><g transform="translate(34 40)"><g class="afl"><rect x="-10" y="0" width="20" height="62" rx="10" class="bd"/></g></g></g></g>
       <g transform="translate(250 118)"><g class="cr b"><g transform="translate(-34 40)"><g class="afr"><rect x="-10" y="0" width="20" height="62" rx="10" class="bd"/></g></g></g></g>
     </svg>
@@ -277,9 +293,8 @@ button:focus-visible,#envsvg:focus-visible{outline:3px solid #7b2447;outline-off
 </section>
 
 </div>
-<div class="snd"><button id="mute" aria-label="Sound on or off">🔊</button><button id="song" aria-label="Add your own song" title="Add your own song">🎵</button></div>
-<audio id="bgMusic" src="audio.mp3" loop preload="auto"></audio>
-<input type="file" id="aud" accept="audio/*" hidden>
+<div class="snd"><button id="mute" aria-label="Sound on or off">🔊</button><button id="song" aria-label="Play background music" title="Play background music">🎵</button></div>
+<audio id="bgMusic" src="audio.mp3" loop preload="auto" playsinline></audio>
 <input type="file" id="file" accept="image/*" hidden>
 
 <script>
@@ -303,22 +318,11 @@ $('letterText').textContent = CONFIG.letter;
 $('loveLine').textContent = CONFIG.loveLine;
 
 // 🔊 audio
-let AC, master, started = false, musicOn = true, loopT, curRun, userAudio = null;
+let AC, master, started = false, musicOn = true;
 function ac(){ if (!AC) { AC = new (window.AudioContext || window.webkitAudioContext)(); master = AC.createGain(); master.gain.value = .5; master.connect(AC.destination); } if (AC.state === 'suspended') AC.resume(); return AC; }
 function tone(f, t, d, type, v, dest){ const o = AC.createOscillator(), g = AC.createGain(); o.type = type || 'sine'; o.frequency.value = f; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v || .2, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + d); o.connect(g); g.connect(dest || master); o.start(t); o.stop(t + d + .05); }
-function stopMusic(){
-  clearTimeout(loopT);
-  if (curRun) { curRun.disconnect(); curRun = null; }
-  const music = $('bgMusic');
-  if (music) music.pause();
-  if (userAudio) userAudio.pause();
-}
-function startMusic(){
-  stopMusic();
-  if (!musicOn) return;
-  const music = $('bgMusic');
-  if (music) music.play().catch(() => { /* Tap the music button if autoplay is blocked. */ });
-}
+function stopMusic(){ const m = $('bgMusic'); if (m) m.pause(); }
+function startMusic(){ if (!musicOn) return; const m = $('bgMusic'); if (m) m.play().catch(() => {}); }
 function sfx(n){
   if (!AC || !musicOn) return;
   const t = AC.currentTime;
@@ -328,29 +332,24 @@ function sfx(n){
   else if (n === 'open') [523, 659, 784, 1046].forEach((f, i) => tone(f, t + i * .09, .4, 'sine', .16));
   else if (n === 'cheer') [523, 659, 784, 1046, 1318].forEach((f, i) => tone(f, t + i * .1, .6, 'triangle', .14));
 }
+// first tap unlocks audio on phones (autoplay rules)
 addEventListener('pointerdown', e => {
-  if (started || e.target.closest('.snd')) return;
+  if (e.target.closest('.snd')) return;
+  try { ac(); } catch (_) {}
+  if (started) return;
   started = true;
   if (musicOn) startMusic();
 });
 $('mute').onclick = () => {
   musicOn = !musicOn;
   $('mute').textContent = musicOn ? '🔊' : '🔇';
-  if (musicOn) { started = true; startMusic(); }
-  else stopMusic();
+  if (musicOn) { started = true; startMusic(); } else stopMusic();
 };
-$('song').setAttribute('aria-label', 'Play background music audio.mp3');
-$('song').title = 'Play background music';
-$('song').textContent = '🎵';
-$('song').onclick = () => {
-  musicOn = true;
-  started = true;
-  $('mute').textContent = '🔊';
-  startMusic();
-};
-$('aud').onchange = () => { const f = $('aud').files[0]; if (!f) return; stopMusic(); userAudio = new Audio(URL.createObjectURL(f)); userAudio.loop = true; musicOn = true; started = true; $('mute').textContent = '🔊'; startMusic(); $('aud').value = ''; };
+$('song').onclick = () => { musicOn = true; started = true; $('mute').textContent = '🔊'; startMusic(); };
+// pause music when the tab/app goes to background, resume on return
+document.addEventListener('visibilitychange', () => { if (document.hidden) stopMusic(); else if (started && musicOn) startMusic(); });
 
-// 🔄 reset everything back to the start
+// 🔄 reset
 function reset(){
   target = null;
   document.querySelectorAll('.pol img').forEach((img, i) => { img.src = `photo${i + 1}.jpeg`; });
@@ -372,7 +371,7 @@ function show(id){
 }
 document.addEventListener('click', e => { const t = e.target.closest('[data-go]'); if (t) show(t.dataset.go); });
 
-// envelope opens, then the letter appears
+// envelope
 function openEnvelope(){
   const s = $('envsvg');
   if (s.classList.contains('open')) return;
@@ -382,10 +381,7 @@ function openEnvelope(){
 }
 $('envsvg').addEventListener('click', openEnvelope);
 $('envsvg').addEventListener('keydown', e => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    openEnvelope();
-  }
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnvelope(); }
 });
 $('giftBox').addEventListener('click', e => {
   const b = e.currentTarget; b.classList.add('pop'); sfx('pop');
@@ -402,7 +398,7 @@ const strip = $('strip'), file = $('file'); let target = null;
 const pegs = ['#7ed6c9','#b79cf2','#ffd36e','#8ec5ff','#f49ac2','#a5d6a7'];
 const tops = [28,72,42,92,28,72], rots = [-6,3,-3,5,-4,4];
 const photoCards = [];
-// On phones the CSS turns the strip into a grid, so we only position on bigger screens.
+// phones use the CSS grid, bigger screens get the hanging layout
 function layoutPhotos() {
   const mobile = window.matchMedia('(max-width: 650px)').matches;
   photoCards.forEach((p, i) => {
@@ -430,7 +426,8 @@ file.onchange = () => {
 };
 
 function confetti(set){
-  for (let i = 0; i < 28; i++) {
+  const n = innerWidth < 650 ? 20 : 28;
+  for (let i = 0; i < n; i++) {
     const s = document.createElement('span');
     s.className = 'fall'; s.textContent = set[i % set.length];
     s.style.left = Math.random() * 100 + 'vw';
@@ -445,7 +442,7 @@ function confetti(set){
 const cv = $('bg'), ctx = cv.getContext('2d');
 let W, H, hearts = [], bits = [], ptr = {x: -999, y: -999}, ptrT;
 function seed(){
-  const n = Math.round(Math.max(14, Math.min(46, W * H / 26000)));
+  const n = Math.round(Math.max(12, Math.min(innerWidth < 650 ? 24 : 46, W * H / 26000)));
   while (hearts.length < n) hearts.push(mk(true));
   hearts.length = n;
 }
@@ -454,7 +451,7 @@ function size(){
   const d = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight;
   cv.width = W * d; cv.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0); seed();
 }
-addEventListener('resize', size); size();
+let rsT; addEventListener('resize', () => { clearTimeout(rsT); rsT = setTimeout(size, 120); }); size();
 function hp(x, y, s, r){
   ctx.save(); ctx.translate(x, y); ctx.rotate(r); ctx.scale(s, s); ctx.beginPath();
   ctx.moveTo(0, .9); ctx.bezierCurveTo(-1.2, .1, -.9, -.9, 0, -.35); ctx.bezierCurveTo(.9, -.9, 1.2, .1, 0, .9); ctx.fill(); ctx.restore();
@@ -462,6 +459,7 @@ function hp(x, y, s, r){
 function burst(x, y, n){ for (let i = 0; i < n; i++) { const a = Math.random() * 6.28, v = 1.5 + Math.random() * 3.5; bits.push({x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 1.5, l: 1, s: 5 + Math.random() * 9}); } }
 let t = 0;
 (function loop(){
+  if (document.hidden) { requestAnimationFrame(loop); return; }
   t += .016; ctx.clearRect(0, 0, W, H); ctx.fillStyle = heartCol;
   for (const h of hearts) {
     const ddx = h.x - ptr.x, ddy = h.y - ptr.y, d2 = ddx * ddx + ddy * ddy;
@@ -483,7 +481,7 @@ addEventListener('pointermove', e => {
   const r = document.documentElement.style; r.setProperty('--mx', (e.clientX / W - .5).toFixed(3)); r.setProperty('--my', (e.clientY / H - .5).toFixed(3));
 });
 addEventListener('pointerdown', e => { burst(e.clientX, e.clientY, 14); ptr.x = e.clientX; ptr.y = e.clientY; });
-addEventListener('deviceorientation', e => { // phone tilt moves the background shapes
+addEventListener('deviceorientation', e => {
   if (e.gamma == null) return; const r = document.documentElement.style;
   r.setProperty('--mx', Math.max(-.5, Math.min(.5, e.gamma / 60)).toFixed(3)); r.setProperty('--my', Math.max(-.5, Math.min(.5, (e.beta - 40) / 80)).toFixed(3));
 });
